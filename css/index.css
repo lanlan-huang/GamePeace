@@ -29,8 +29,8 @@ button{
     width: 990px;
     margin: 0 auto;
 
-    display: flex;  /* 变成弹性盒模型 */
-    justify-content: space-between; /* 两端对齐 */
+    display: flex; 
+    justify-content: space-between;
 }
 #top .left{
     position: relative; /* 为了给大图定位 */
@@ -97,9 +97,9 @@ button{
     right: 3px;
     top: 5px;
 
-    /* css3里的变换 */
+    
     transform: rotate(90deg);
-    opacity: 0.1;    /* 透明度，0-1 */
+    opacity: 0.1; 
 }
 #top h3.text2:hover iframe{
     display: block;
@@ -186,7 +186,7 @@ button{
     left: 70%;
     background: url(../images/join_btn.png) no-repeat center;
 
-    /* 以图换字，就是把字移出盒子范围，用户看不到，但浏览器，搜索引擎认识 */
+    /* 把字移出盒子范围，用户看不到，但浏览器，搜索引擎认识 */
     text-indent: -999px;
     overflow: hidden;
 }
@@ -203,8 +203,8 @@ button{
     height: 163px;
     background: url(../images/video-bg.png);
     display: flex;
-    justify-content: center;    /* 水平上居中 */
-    align-items: center;    /* 垂直方向上居中 */
+    justify-content: center;   
+    align-items: center;  
     position: relative;
 }
 #section1 .play:after{
@@ -232,7 +232,6 @@ button{
     display: block;
 }
 #section1  .down a:nth-child(2){
-    /* 选择到最后一个a标签 */
     margin-top: 10px;
 }
 
@@ -244,7 +243,7 @@ button{
     box-sizing: border-box;
     background: url(../images/dia-bg.png) no-repeat;
 
-    /* 下面的写法是让一个元素与可视区的中心点重合，或者说是让一个元素能在可视区里左右、上下都居中 */
+    /* 让一个元素与可视区的中心点重合，即在可视区里左右、上下都居中 */
     position: fixed;
     left: 0;
     right: 0;
@@ -333,7 +332,7 @@ button{
     padding-top: 30px;
     box-sizing: border-box;
 }
-#section2 .con>div{ /* 选择到第一层的div */
+#section2 .con>div{
     display: none;
 }
 #section2 .con>div.active{
@@ -796,7 +795,7 @@ button{
     left: 0;
     opacity: .5;
     z-index: 2;
-    transform: scale(.8);   /* 缩放 */
+    transform: scale(.8); 
     transform-origin: left;
 }
 #section8 li:nth-child(2){
@@ -823,7 +822,6 @@ button{
     opacity: 0.5;
     transform: translateX(-50%) scale(.8);
 
-    /* 让从第4张图开始到所有的图，都移动到第一张图的后面，同时也需要缩小，以及中心点要与父级重合 */
 }
 #section8 .circle{
     margin-top: 50px;
