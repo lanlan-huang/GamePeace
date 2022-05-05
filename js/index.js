@@ -23,12 +23,12 @@
         var btns = btn.children;  //获取到第一层的子元素
         var cons = content.children;
 
-        for (var i = 0; i < btns.length; i++) { //循环的是所有的按钮
-            btns[i].index = i;    //给每一个按钮身上添加一个索引值
+        for (var i = 0; i < btns.length; i++) { //循环所有按钮
+            btns[i].index = i;    
             btns[i].onclick = function () {
                 //让别的元素身上的active去掉，让别的元素对应的内容隐藏
                 for (var i = 0; i < btns.length; i++) { //循环所有元素
-                    //classList取到元素身上的所有class(集合对象)
+                    
                     btns[i].classList.remove('active');
                     cons[i].classList.remove('active');
                 }
@@ -40,8 +40,8 @@
         }
     }
 
-    var tabBtns = document.querySelectorAll('.tabBtn');    //取到页面里所有的按钮的父级（3个）
-    var tabContents = document.querySelectorAll('.tabContent');    //取到页面里所有的内容（3个）
+    var tabBtns = document.querySelectorAll('.tabBtn'); 
+    var tabContents = document.querySelectorAll('.tabContent'); 
 
     for (var i = 0; i < tabBtns.length; i++) {
         tab(tabBtns[i], tabContents[i]);
@@ -70,7 +70,7 @@
 
         next.onclick = function () {
             if (!canclick) {
-                //这个条件成立说明 现在不能点击
+                //这个条件成立：现在不能点击
                 return;
             }
 
@@ -80,7 +80,6 @@
 
         prev.onclick = function () {
             if (!canclick) {
-                //这个条件成立说明 现在不能点击
                 return;
             }
 
@@ -91,7 +90,7 @@
             }
 
             setTimeout(function () {
-                //transition的值会被mover里给覆盖了，所以我让它俩不是同时执行，借助定时器
+                //transition的值会被mover里给覆盖了，借助定时器解决
                 cn--;
                 move();
             }, 16);
@@ -101,7 +100,6 @@
             circles[i].index = i;
             circles[i].onclick = function () {
                 if (!canclick) {
-                    //这个条件成立说明 现在不能点击
                     return;
                 }
 
@@ -111,41 +109,35 @@
         }
 
         function move() {
-            canclick = false; //运动正在走，不让用户点击
+            canclick = false; //运动正在走，不允许点击
 
             //console.log(cn);
             ul.style.transition = '.3s';
             ul.style.transform = 'translateX(' + -cn * boxWidth + 'px)';
 
-            /*
-                同步圆点
-                cn:0 1 2 3 4 5 6 7
-                hn:0 1 2 3 0 1 2 3
-
-             */
 
             var hn = cn % (len / 2);
             circles[ln].className = '';
             circles[hn].className = 'active';
             ln = hn;    //当前次的索引相对于下一次的点击就是上一次的索引
-            //相对于下一次的点击，上一次就是当前
         }
-
-        ul.addEventListener('transitionend', function () { //过渡完成后就会触发的事件
+        
+         //过渡完成后就会触发的事件
+        ul.addEventListener('transitionend', function () {
             // console.log(1);
-            if (cn == len / 2) {  //当第4个索引对应的图片运动完了，要把ul拉回原点，才能做到无缝滚动
+            if (cn == len / 2) {  //无缝滚动：当第4个索引对应的图片运动完了，要把ul拉回原点
                 // console.log(12);
                 ul.style.transition = null;
                 cn = 0;
                 ul.style.transform = 'translateX(' + -cn * boxWidth + 'px)';
             }
 
-            canclick = true;  //运动走完了，让用户可以再次点击 
+            canclick = true;  //运动走完了，可以再次点击 
         });
 
         timer = setInterval(next.onclick, 3000);
 
-        //浏览器tab页面切换、浏览器缩小的时候，浏览器为了节约资源会把运动给停掉，但是定时器依然在走。造成了不同步的问题，还有可能cn走超了等等。以下就是解决这个问题
+        //解决浏览器tab页面切换、浏览器缩小时，造成了不同步的问题。
         window.onblur = function () {
             //页面隐藏了
             clearInterval(timer);
@@ -154,17 +146,6 @@
             //页面打开了
             timer = setInterval(next.onclick, 3000);
         }
-
-        //第二个解决方法，使用visibilitychange事件
-        /* document.addEventListener('visibilitychange',function(){
-            if(document.visibilityState === 'hidden' ){
-                //页面隐藏了，清除动画
-                clearInterval(timer);
-            }else{
-               //页面打开了
-               timer = setInterval(next.onclick, 3000);
-            }
-        }); */
 
     }
 
@@ -223,7 +204,6 @@
         cn++;
         cn %= lis.length;
 
-        //注意：li:nth-child(3)原来是用right定位，样式里已经改成了left定位
         ul.appendChild(lis[0]);
 
         spans[ln].className = '';
